@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:invoive_generator/pdf_page.dart';
-import 'package:invoive_generator/splash_screen.dart';
 
 Future main() async {
   // WidgetsFlutterBinding.ensureInitialized();
