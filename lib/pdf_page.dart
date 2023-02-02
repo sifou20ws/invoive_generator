@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:invoive_generator/model/invoice.dart';
+import 'package:lottie/lottie.dart';
 import 'API/pdf_api.dart';
 import 'API/pdf_invoice_api.dart';
 import 'package:pdf/pdf.dart';
@@ -42,22 +43,20 @@ class _PdfPageState extends State<PdfPage> {
         ),
         body: Container(
           padding: EdgeInsets.all(32),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                TextButton(
-                  onPressed: () async {
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextButton(
+                onPressed: () async {
+                  final pdfFile = await PdfInvoiceApi.generate(invoice);
+                  log(pdfFile.toString());
 
-                    final pdfFile = await PdfInvoiceApi.generate(invoice);
-                    log(pdfFile.toString());
-
-                    PdfApi.openFile(pdfFile);
-                  },
-                  child: Text('Invoive pdf'),
-                ),
-              ],
-            ),
+                  PdfApi.openFile(pdfFile);
+                },
+                child: Text('Invoive pdf'),
+              ),
+              SizedBox(height: 20),
+            ],
           ),
         ),
       );
